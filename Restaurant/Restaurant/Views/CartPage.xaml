@@ -1,0 +1,74 @@
+﻿    <Page x:Class="Restaurant.Views.CartPage"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:vm="clr-namespace:Restaurant.ViewModels"
+          Title="Cart">
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Coș de cumpărături"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
+
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding Items}"
+                      Margin="0,0,0,10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Produs"
+                                        DisplayMemberBinding="{Binding Name}"
+                                        Width="200"/>
+                        <GridViewColumn Header="Cantitate"
+                                        DisplayMemberBinding="{Binding Quantity}"
+                                        Width="80"/>
+                        <GridViewColumn Header="Preț/unitate"
+                                        DisplayMemberBinding="{Binding UnitPrice, StringFormat='{}{0:F2} lei'}"
+                                        Width="100"/>
+                    <GridViewColumn Header="Subtotal" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Subtotal, StringFormat='{}{0:F2} lei'}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <TextBlock Text="Subtotal: " FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Subtotal, StringFormat='{}{0:F2} lei'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <TextBlock Text="Discount: " FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Discount, StringFormat='{}{0:F2} lei'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Livrare: " FontWeight="Bold"/>
+                    <TextBlock Text="{Binding DeliveryFee, StringFormat='{}{0:F2} lei'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="Total: " FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Total, StringFormat='{}{0:F2} lei'}" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Înapoi"
+                            Command="{Binding BackCommand}"
+                            Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Plasează comanda"
+                            Command="{Binding PlaceOrderCommand}"
+                            Width="150"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Page>
+
+
+

@@ -1,0 +1,23 @@
+﻿<Page x:Class="Restaurant.Views.LowStockProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Produse cu stoc redus">
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Produse cu stoc sub prag" FontWeight="Bold" FontSize="20" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="{Binding Threshold}" FontWeight="Bold" Foreground="DarkRed" VerticalAlignment="Center"/>
+                <Button Content="Reîmprospătează" Margin="10,0,0,0"
+                        Command="{Binding RefreshCommand}" />
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding LowStockProducts}" AutoGenerateColumns="False" Height="300">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Produs" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Cantitate totală" Binding="{Binding TotalQuantity}" Width="*"/>
+                    <DataGridTextColumn Header="Categorie" Binding="{Binding Category.Name}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>
